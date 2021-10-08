@@ -17,20 +17,33 @@ const Theme = {
 };
 
 const bodeRef = document.body;
-bodeRef.classList.add('light-theme');
+const checkBox = document.querySelector('.theme-switch__toggle');
+
 
 document.addEventListener('change', classToggle);
 
+themeDefault();
+
 function classToggle(e) {
-    const checkBox = document.querySelector('.theme-switch__toggle');
-    if (bodeRef.classList.contains('light-theme')) {
-        bodeRef.classList.remove('light-theme');
-        bodeRef.classList.add('dark-theme');
-        checkBox.getAttribute('checked');
-        localStorage
+    e.preventDefault();
+
+    bodeRef.classList.toggle(Theme.DARK);
+
+    if (bodeRef.classList.contains(Theme.DARK)) {
+        localStorage.setItem('theme', Theme.DARK);
+        localStorage.setItem('checkbox', checkBox.checked);
+
     }
-    else if (bodeRef.classList.contains('dark-theme')) {
-        bodeRef.classList.remove('dark-theme');
-        bodeRef.classList.add('light-theme');
-    }  
+    else {
+        let checkBoxFalse = checkBox.checked = false;
+    localStorage.setItem('theme', Theme.LIGHT);
+    localStorage.setItem('checkbox', checkBoxFalse);}
+}
+
+function themeDefault() {
+    if (!localStorage.length) {
+        localStorage.setItem('theme', Theme.LIGHT);
     }
+    bodeRef.classList.add(localStorage.getItem('theme'));
+    localStorage.getItem('checkbox');
+   }   
