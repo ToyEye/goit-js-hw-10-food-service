@@ -18,7 +18,7 @@ const Theme = {
 
 const bodeRef = document.body;
 const checkBox = document.querySelector('.theme-switch__toggle');
-
+console.log(checkBox);
 
 document.addEventListener('change', classToggle);
 
